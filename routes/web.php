@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[PostController::class,'home'])->name('homePage');
+Route::get('/Contact',[PostController::class,'contact'])->name('contactPage');
+Route::get('/films/{id}',[PostController::class,'listFilms'])->name('listFilms.find');
+Route::get('/film/page',[PostController::class,'film'])->name('film');
+Route::get('/bestFilms/page/{id}',[PostController::class,'bestFilms'])->name('listFilms.best')->whereNumber('id');
+
