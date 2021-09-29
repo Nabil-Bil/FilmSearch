@@ -9,6 +9,7 @@
         @if($id >0 and $id<=$response['total_pages'])
             <p class="text-5xl font-bold my-10 m-auto">Best Films :
             <p>
+                
                 @include("partials.item")
                 @if($id==$response['total_pages'])
                     <a href="{{$id-=1}}" class="text-xl font-bold">Previous</a>
