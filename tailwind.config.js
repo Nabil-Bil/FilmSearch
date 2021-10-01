@@ -11,8 +11,7 @@ module.exports = {
             },
             color: {
                 white: '#fff',
-
-            }
+            },
         },
 
     },

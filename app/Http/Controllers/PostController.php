@@ -13,7 +13,6 @@ class PostController extends Controller
 
     function getList($url)
     {
-
         return Http::get($url);
     }
 
@@ -22,10 +21,6 @@ class PostController extends Controller
         return view('home', compact("id"));
     }
 
-    function contact()
-    {
-        return view('contact');
-    }
 
     function listFilms(Request $request, $id = 1)
     {
@@ -38,7 +33,8 @@ class PostController extends Controller
 
     function bestFilms($id)
     {
-        $url = "https://api.themoviedb.org/3/discover/movie?api_key=" . $this->token . "&sort_by=vote_count.desc&page=" . $id;
+
+        $url = "https://api.themoviedb.org/3/discover/movie?api_key=" . $this->token . "&sort_by=popularity.desc&include_video=true&page=" . $id;
         $response = $this->getList($url);
         $image = $this->image_url;
         return view("bestFilm", compact('response', 'image', 'id'));
