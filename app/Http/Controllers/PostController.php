@@ -24,6 +24,9 @@ class PostController extends Controller
 
     function listFilms(Request $request, $id = 1)
     {
+        $request->validate([
+           'Film'=>['required','min:2','max:50']
+        ]);
         $title = $request->film;
         $url = "https://api.themoviedb.org/3/search/movie?api_key=" . $this->token . "&query=" . $title . "&page=" . $id;
         $response = $this->getList($url);
