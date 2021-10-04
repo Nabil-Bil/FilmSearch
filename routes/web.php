@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[PostController::class,'home'])->name('homePage');
 Route::get('/films/{id}',[PostController::class,'listFilms'])->name('listFilms.find');
 Route::get('/bestFilms/page/{id}',[PostController::class,'bestFilms'])->name('listFilms.best')->whereNumber('id');
+Route::get('film/{id}',[PostController::class,'film'])->name('film')->whereNumber('id');
 

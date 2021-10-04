@@ -7,7 +7,7 @@
 @section('body')
     <section class="m-10">
         @if($response->getStatusCode()==200)
-            <p class="text-5xl font-bold my-10 m-auto">Best Films :
+            <p class="sm:text-5xl text-2xl font-bold my-10 m-auto">Best Films :
             <p>
             @include("partials.item")
             <div class="flex justify-center">
