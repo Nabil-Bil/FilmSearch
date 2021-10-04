@@ -25,9 +25,10 @@ class PostController extends Controller
     function listFilms(Request $request, $id = 1)
     {
         $request->validate([
-           'Film'=>['required','min:2','max:50']
+            'Film' => ['required', 'min:2', 'max:50']
         ]);
-        $title = $request->film;
+
+        $title = $request->Film;
         $url = "https://api.themoviedb.org/3/search/movie?api_key=" . $this->token . "&query=" . $title . "&page=" . $id;
         $response = $this->getList($url);
         $image = $this->image_url;
@@ -43,8 +44,19 @@ class PostController extends Controller
         return view("bestFilm", compact('response', 'image', 'id'));
     }
 
-    function film()
+    function film($id)
     {
-        return view('film');
+        $url = "https://api.themoviedb.org/3/movie/" . $id . "?api_key=" . $this->token;
+        $response = $this->getList($url);
+        $image = $this->image_url;
+
+        if ($response->getStatusCode() != 200) {
+            $title = "Not Found";
+        } else {
+            $title = $response['title'];
+        }
+
+        return view('film', compact('id', 'response', 'image', 'title'));
+
     }
 }
